@@ -5,11 +5,20 @@ import './App.css';
 import GameBoard from './components/GameBoard/GameBoard';
 
 function App() {
-    const [activePlayer, setActivePlayer] = useState('X');
+	const [activePlayer, setActivePlayer] = useState('X');
+	const [logs, setLogs] = useState([]);
 
-    const changePlayerHandler = () => {
-        setActivePlayer(state => state === 'X' ? 'O' : 'X');
-    };
+	const changePlayerHandler = () => {
+		setActivePlayer((state) => (state === 'X' ? 'O' : 'X'));
+	};
+
+	const logsHandler = (player, rowIndex, colIndex) => {
+		setLogs((prevState) => {
+			const newState = [...prevState];
+			newState.push({ player: player, row: rowIndex, col: colIndex });
+			return newState;
+		});
+	};
 
 	return (
 		<>
@@ -22,9 +31,19 @@ function App() {
 					<div>Player O</div>
 				</div>
 
-                <GameBoard player={activePlayer} changePlayer={changePlayerHandler} />
+				<GameBoard
+					player={activePlayer}
+					changePlayer={changePlayerHandler}
+					logsHandler={logsHandler}
+				/>
 			</div>
-			<div>Logs</div>
+			<div className='logs'>
+				{logs.map((log) => (
+					<div>
+						{log.player} clicked row {log.row} col {log.col}
+					</div>
+				))}
+			</div>
 		</>
 	);
 }

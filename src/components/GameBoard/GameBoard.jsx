@@ -10,7 +10,7 @@ const initialBoard = [
 	[null, null, null],
 ];
 
-const GameBoard = ({ player, changePlayer }) => {
+const GameBoard = ({ player, changePlayer, logsHandler }) => {
 	const [board, setBoard] = useState(initialBoard);
 
 	const onSquareClickHandler = (player, rowIndex, colIndex) => {
@@ -21,6 +21,7 @@ const GameBoard = ({ player, changePlayer }) => {
 		});
 
         changePlayer();
+        logsHandler(player, rowIndex, colIndex);
 	};
 
 	return (
@@ -33,7 +34,8 @@ const GameBoard = ({ player, changePlayer }) => {
 								<button
 									className={classes.btn}
 									onClick={() => onSquareClickHandler(player, rowIndex, colIndex)}
-								>
+                                    disabled={board[rowIndex][colIndex] !== null}
+                                >
 									{board[rowIndex][colIndex]}
 								</button>
 							</li>
