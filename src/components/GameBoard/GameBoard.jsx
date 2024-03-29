@@ -6,12 +6,22 @@ import classes from './GameBoard.module.css';
 
 const initialBoard = [
 	[null, null, null],
-	["X", null, null],
+	[null, null, null],
 	[null, null, null],
 ];
 
-const GameBoard = () => {
+const GameBoard = ({ player, changePlayer }) => {
 	const [board, setBoard] = useState(initialBoard);
+
+	const onSquareClickHandler = (player, rowIndex, colIndex) => {
+		setBoard((prevState) => {
+			const newState = [...prevState];
+			newState[rowIndex][colIndex] = player;
+			return newState;
+		});
+
+        changePlayer();
+	};
 
 	return (
 		<div className={classes['game-board']}>
@@ -19,9 +29,12 @@ const GameBoard = () => {
 				return (
 					<ul key={uuidv4()} className={classes.row}>
 						{row.map((_, colIndex) => (
-                            <li key={uuidv4()} className='column'>
-								<button className={classes.btn}>
-									row-{rowIndex} col-{colIndex}
+							<li key={uuidv4()} className='column'>
+								<button
+									className={classes.btn}
+									onClick={() => onSquareClickHandler(player, rowIndex, colIndex)}
+								>
+									{board[rowIndex][colIndex]}
 								</button>
 							</li>
 						))}

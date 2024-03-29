@@ -7,6 +7,10 @@ import GameBoard from './components/GameBoard/GameBoard';
 function App() {
     const [activePlayer, setActivePlayer] = useState('X');
 
+    const changePlayerHandler = () => {
+        setActivePlayer(state => state === 'X' ? 'O' : 'X');
+    };
+
 	return (
 		<>
 			<header>
@@ -18,7 +22,7 @@ function App() {
 					<div>Player O</div>
 				</div>
 
-                <GameBoard />
+                <GameBoard player={activePlayer} changePlayer={changePlayerHandler} />
 			</div>
 			<div>Logs</div>
 		</>
