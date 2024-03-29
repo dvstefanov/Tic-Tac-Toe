@@ -1,0 +1,15 @@
+.game-board {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.row {
+	display: flex;
+	gap: 5px;
+}
+
+.btn {
+	width: 70px;
+	height: 70px;
+}
