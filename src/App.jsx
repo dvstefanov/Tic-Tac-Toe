@@ -1,8 +1,11 @@
 import { useState } from 'react';
 
-import './App.css';
+import { v4 as uuidv4 } from 'uuid';
 
 import GameBoard from './components/GameBoard/GameBoard';
+import GameLogs from './components/GameLogs/GameLogs';
+
+import './App.css';
 
 function App() {
 	const [activePlayer, setActivePlayer] = useState('X');
@@ -33,17 +36,11 @@ function App() {
 
 				<GameBoard
 					player={activePlayer}
-					changePlayer={changePlayerHandler}
+					changePlayerHandler={changePlayerHandler}
 					logsHandler={logsHandler}
 				/>
 			</div>
-			<div className='logs'>
-				{logs.map((log) => (
-					<div>
-						{log.player} clicked row {log.row} col {log.col}
-					</div>
-				))}
-			</div>
+			<GameLogs logs={logs} />
 		</>
 	);
 }
