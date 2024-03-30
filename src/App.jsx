@@ -23,6 +23,10 @@ function App() {
 		});
 	};
 
+    const resetLogs = () => {
+        setLogs(prevState => []);
+    }
+
 	return (
 		<>
 			<header>
@@ -38,6 +42,8 @@ function App() {
 					player={activePlayer}
 					changePlayerHandler={changePlayerHandler}
 					logsHandler={logsHandler}
+                    logsLength={logs.length}
+                    resetLogs={resetLogs}
 				/>
 			</div>
 			<GameLogs logs={logs} />
