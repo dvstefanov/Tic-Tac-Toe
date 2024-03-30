@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
-import { v4 as uuidv4 } from 'uuid';
-
 import GameBoard from './components/GameBoard/GameBoard';
 import GameLogs from './components/GameLogs/GameLogs';
+import Player from './components/Player/Player';
 
 import './App.css';
 
@@ -23,9 +22,10 @@ function App() {
 		});
 	};
 
-    const resetLogs = () => {
-        setLogs(prevState => []);
-    }
+	const onReset = () => {
+		setLogs((prevState) => []);
+		setActivePlayer((state) => 'X');
+	};
 
 	return (
 		<>
@@ -34,16 +34,16 @@ function App() {
 			</header>
 			<div id='board-wrapper'>
 				<div id='players-wrapper'>
-					<div>Player X</div>
-					<div>Player O</div>
+					<Player name='Player 1' symbol='X' />
+					<Player name='Player 2' symbol='O' />
 				</div>
 
 				<GameBoard
 					player={activePlayer}
 					changePlayerHandler={changePlayerHandler}
 					logsHandler={logsHandler}
-                    logsLength={logs.length}
-                    resetLogs={resetLogs}
+					logsLength={logs.length}
+					onReset={onReset}
 				/>
 			</div>
 			<GameLogs logs={logs} />

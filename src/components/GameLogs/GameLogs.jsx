@@ -7,7 +7,7 @@ const GameLogs = ({ logs }) => {
 		<div>
 			{logs.map((log) => (
 				<div key={uuidv4()}>
-					{log.player} clicked row {log.row} col {log.col}
+					{log.player} selected row-{log.row} col-{log.col}
 				</div>
 			))}
 		</div>

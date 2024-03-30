@@ -18,9 +18,9 @@ const GameBoard = ({
 	logsHandler,
 	changePlayerHandler,
 	logsLength,
-    resetLogs
+	onReset,
 }) => {
-	const [board, setBoard] = useState([...initialBoard.map(arr => [...arr])]);
+	const [board, setBoard] = useState([...initialBoard.map((arr) => [...arr])]);
 
 	let winner;
 	let draw = false;
@@ -47,15 +47,15 @@ const GameBoard = ({
 			return newState;
 		});
 
-		changePlayerHandler();
+        changePlayerHandler();
 		logsHandler(player, rowIndex, colIndex);
 	};
 
 	const onResetHandler = () => {
-		setBoard((prevState) => [...initialBoard.map(arr => [...arr])]);
-        winner = undefined;
-        draw = false;
-        resetLogs();
+		setBoard((prevState) => [...initialBoard.map((arr) => [...arr])]);
+		winner = undefined;
+		draw = false;
+		onReset();
 	};
 
 	return (

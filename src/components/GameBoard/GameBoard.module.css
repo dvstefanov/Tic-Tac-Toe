@@ -12,6 +12,11 @@
 .btn {
 	width: 70px;
 	height: 70px;
+    border: none;
+    background-color: #054443;
+    font-size: 2rem;
+    color: #080f0f;
+    font-weight: 600;
 }
 
 .wrapper {
